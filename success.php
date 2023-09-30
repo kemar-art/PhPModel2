@@ -1,8 +1,37 @@
 <?php 
-$title= "success";
-require_once"includes/header.php"; ?>
+    $title= "success";
+    require_once "includes/header.php"; 
+    require_once "db/conn.php";
 
-<h1 class="text-center text-success">You Have Been Registered!</h1>
+    if (isset($_POST["submit"])) {
+        $fname = $_POST['firstname'];
+        $lname = $_POST['lastname'];
+        $dob = $_POST['dob'];
+        $email = $_POST['email'];
+        $contact = $_POST['phone'];
+        $specialty = $_POST['specialty'];
+
+
+        /*$orig_file = $_FILES["avatar"]["tmp_name"];
+        $ext = pathinfo($_FILES["avatar"]["name"], PATHINFO_EXTENSION);
+        $target_dir = 'uploads/';
+        $destination = "$target_dir$contact.$ext";
+        move_uploaded_file($orig_file,$destination);*/
+
+
+
+        $isSuccess = $crud->insertAttendees($fname, $lname, $dob, $email, $contact, $specialty);
+
+        if ($isSuccess) {
+            echo '<h1 class="text-center text-success">You Have Been Registered!</h1>';
+        }
+        else{
+            echo '<h1 class="text-center text-danger">Something went Wrong!!!</h1>';
+        }
+    }
+?>
+
+
 
 
 
@@ -27,35 +56,7 @@ require_once"includes/header.php"; ?>
         </div>
     </div>
 <?php 
-/*
-if(isset($_POST['submit'])){
-    //extract values from the $_POST array
-    $fname = $_POST['firstname'];
-    $lname = $_POST['lastname'];
-    $dob = $_POST['dob'];
-    $email = $_POST['email'];
-    $contact = $_POST['phone'];
-    $specialty = $_POST['specialty'];
 
-    $orig_file = $_FILES["avatar"]["tmp_name"];
-    $ext = pathinfo($_FILES["avatar"]["name"], PATHINFO_EXTENSION);
-    $target_dir = 'uploads/';
-    $destination = "$target_dir$contact.$ext";
-    move_uploaded_file($orig_file,$destination);
-
-    //Call function to insert and track if success or not
-    $isSuccess = $crud->insertAttendees($fname, $lname, $dob, $email,$contact,$specialty,$destination);
-    $specialtyName = $crud->getSpecialtyById($specialty);
-    
-    if($isSuccess){
-        SendEmail::SendMail($email, 'Welcome to IT Conference 2019', 'You have successfully registerted for this year\'s IT Conference');
-        include 'includes/successmessage.php';
-    }
-    else{
-        include 'includes/errormessage.php';
-    }
-
-}*/
 ?>
 
 <?php require_once"includes/footer.php"; ?>

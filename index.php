@@ -3,11 +3,13 @@
 
 <?php 
 $title= "Index";
-require_once"includes/header.php"; ?>
+require_once "includes/header.php"; 
+require_once "db/conn.php";
+?>
 
 
 <h1 class="text-center">Register for IT Confrence</h1>
-<form method="get" action="success.php">
+<form method="post" action="success.php">
     <div class="form-group">
         <div>
             <label for="firstname">First Name</label>
@@ -24,7 +26,7 @@ require_once"includes/header.php"; ?>
     </div>
     <div class="form-group">
             <label for="specialty">Area Of Expertise</label>
-            <select class="form-select" id="specialty">
+            <select class="form-select" id="specialty" name="specialty">
                 <option>Database Administrator</option>
                 <option>Software Developer</option>
                 <option>Web Administrator</option>

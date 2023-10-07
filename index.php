@@ -5,6 +5,8 @@
 $title= "Index";
 require_once "includes/header.php"; 
 require_once "db/conn.php";
+
+$results = $crud->getSpecialties();
 ?>
 
 
@@ -27,10 +29,9 @@ require_once "db/conn.php";
     <div class="form-group">
             <label for="specialty">Area Of Expertise</label>
             <select class="form-select" id="specialty" name="specialty">
-                <option value="1">Database Administrator</option>
-                <option>Software Developer</option>
-                <option>Web Administrator</option>
-                <option>Ohter</option>
+            <?php while($r = $results->fetch(PDO::FETCH_ASSOC)) {?>
+                   <option value="<?php echo $r['specialty_id'] ?>"><?php echo $r['name']; ?></option>
+                <?php }?>
             </select>
     </div>
 
@@ -55,6 +56,10 @@ require_once "db/conn.php";
     <button type="submit" name="submit" class="btn btn-primary btn-block">Submit</button>
 </form>
 
+<br/>
+<br/>
+<br/>
+<br/>
 
 
 

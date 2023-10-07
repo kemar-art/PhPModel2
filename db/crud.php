@@ -42,6 +42,21 @@ class crud{
        
     }
 
+    public function getAttendeeDetails($id){
+        try{
+             $sql = "select * from attendee a inner join specialties s on a.specialty_id = s.specialty_id 
+             where attendee_id = :id";
+             $stmt = $this->db->prepare($sql);
+             $stmt->bindparam(':id', $id);
+             $stmt->execute();
+             $result = $stmt->fetch();
+             return $result;
+        }catch (PDOException $e) {
+             echo $e->getMessage();
+             return false;
+         }
+     }
+
     public function getSpecialties(){
         try{
             $sql = "SELECT * FROM `specialties`";
@@ -53,6 +68,9 @@ class crud{
         }
         
     }
+
+    
+
 
     
 }

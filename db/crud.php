@@ -92,6 +92,20 @@ class crud{
          
      }
 
+
+     public function deleteAttendee($id){
+        try{
+             $sql = "delete from attendee where attendee_id = :id";
+             $stmt = $this->db->prepare($sql);
+             $stmt->bindparam(':id', $id);
+             $stmt->execute();
+             return true;
+         }catch (PDOException $e) {
+             echo $e->getMessage();
+             return false;
+         }
+     }
+
     
 
 

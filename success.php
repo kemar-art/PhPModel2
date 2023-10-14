@@ -19,9 +19,16 @@
         move_uploaded_file($orig_file,$destination);*/
 
 
+        $orig_file = $_FILES["avatar"]["tmp_name"];
+        $ext = pathinfo($_FILES["avatar"]["name"], PATHINFO_EXTENSION);
+        $target_dir = 'uploads/';
+        $destination = "$target_dir$contact.$ext";
+        move_uploaded_file($orig_file,$destination);
+
+         exit();
 
         $isSuccess = $crud->insertAttendees($fname, $lname, $dob, $email, $contact, $specialty);
-
+        $specialtyName = $crud->getSpecialtyById($specialty);
         if ($isSuccess) {
             include 'includes/successmessage.php';
         }
@@ -32,16 +39,13 @@
 ?>
 
 
-
-
-
-<div class="card" style="width: 18rem;">
+    <div class="card" style="width: 18rem;">
         <div class="card-body">
             <h5 class="card-title">
                 <?php echo $_POST['firstname'] . ' ' . $_POST['lastname'];  ?>
             </h5>
             <h6 class="card-subtitle mb-2 text-muted">
-                <?php echo $_POST['specialty'];  ?>    
+                <?php echo $specialtyName['name'];  ?>    
             </h6>
             <p class="card-text">
                 Date Of Birth: <?php echo $_POST['dob'];  ?>

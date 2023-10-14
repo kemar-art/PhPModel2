@@ -5,6 +5,14 @@
     $pass = "";
     $charset = "utf8mb4";
 
+
+
+   /* $host = "sql310.infinityfree.com";
+    $db = "if0_35096201_attendance_db";
+    $user = "f0_35096201";
+    $pass = " 59U3Z3aR0c94S ";
+    $charset = "utf8mb4";*/
+
     $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
 
     try{

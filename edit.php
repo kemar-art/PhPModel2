@@ -8,7 +8,7 @@
 
     if(!isset($_GET['id']))
     {
-        //echo 'error';
+        
         include 'includes/errormessage.php';
         header("Location: viewrecords.php");
     }
@@ -48,7 +48,7 @@
         </div>
         <div class="form-group">
             <label for="email">Email address</label>
-            <input type="email" class="form-control" id="email" value="<?php echo $attendee['emailadress'] ?>" name="email" aria-describedby="emailHelp" >
+            <input type="email" class="form-control" id="email" value="<?php echo $attendee['emailaddress'] ?>" name="email" aria-describedby="emailHelp" >
             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
         </div>
         <div class="form-group">

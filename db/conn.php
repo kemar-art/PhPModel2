@@ -6,7 +6,6 @@
     $charset = "utf8mb4";
 
 
-
    /* $host = "sql310.infinityfree.com";
     $db = "if0_35096201_attendance_db";
     $user = "f0_35096201";

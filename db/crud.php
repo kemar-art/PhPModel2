@@ -6,10 +6,10 @@ class crud{
         $this->db = $conn;
     }
 
-    public function insertAttendees($fname, $lname, $dob, $email,$contact,$specialty){
+    public function insertAttendees($fname, $lname, $dob, $email,$contact,$specialty,$avatar_path){
         try {
             // define sql statement to be executed
-            $sql = "INSERT INTO attendee (firstname,lastname,dateofbirth,emailaddress,contactnumber,specialty_id) VALUES (:fname,:lname,:dob,:email,:contact,:specialty)";
+            $sql = "INSERT INTO attendee (firstname,lastname,dateofbirth,emailaddress,contactnumber,specialty_id,avatar_path) VALUES (:fname,:lname,:dob,:email,:contact,:specialty,:avatar_path)";
             //prepare the sql statement for execution
             $stmt = $this->db->prepare($sql);
             // bind all placeholders to the actual values
@@ -19,7 +19,7 @@ class crud{
             $stmt->bindparam(':email',$email);
             $stmt->bindparam(':contact',$contact);
             $stmt->bindparam(':specialty',$specialty);
-            //$stmt->bindparam(':avatar_path',$avatar_path);
+            $stmt->bindparam(':avatar_path',$avatar_path);
 
             $stmt->execute();
             return true;
@@ -69,9 +69,9 @@ class crud{
         
     }
 
-    public function editAttendee($id,$fname, $lname, $dob, $email,$contact,$specialty){
+    public function editAttendee($id,$fname, $lname, $dob, $email,$contact,$specialty,$avatar_path){
         try{ 
-             $sql = "UPDATE `attendee` SET `firstname`=:fname,`lastname`=:lname,`dateofbirth`=:dob,`emailaddress`=:email,`contactnumber`=:contact,`specialty_id`=:specialty WHERE attendee_id = :id ";
+             $sql = "UPDATE `attendee` SET `firstname`=:fname,`lastname`=:lname,`dateofbirth`=:dob,`emailaddress`=:email,`contactnumber`=:contact,`specialty_id`=:specialty WHERE attendee_id = :id,'avatar_path'=:avatar_path";
              $stmt = $this->db->prepare($sql);
              // bind all placeholders to the actual values
              $stmt->bindparam(':id',$id);
@@ -81,6 +81,7 @@ class crud{
              $stmt->bindparam(':email',$email);
              $stmt->bindparam(':contact',$contact);
              $stmt->bindparam(':specialty',$specialty);
+             $stmt->bindparam(':avatar_path',$avatar_path);
 
              // execute statement
              $stmt->execute();

@@ -6,14 +6,17 @@ require_once "db/conn.php";
 $results = $crud->getAttendees();
 ?>
 
-<table class="table">
+<table id="myTable" class="table table-bordered table-striped" >
+    <thead>
         <tr>
-            <th>#</th>
+            <th>#ID</th>
             <th>First Name</th>
             <th>Last Name</th>
             <th>Specialty</th>
-            <th>Actions</th>
+            <th style="width: 20%">Actions</th>
         </tr>
+    </thead>
+        <tbody>
         <?php while($r = $results->fetch(PDO::FETCH_ASSOC)) { ?>
            <tr>
                 <td><?php echo $r['attendee_id'] ?></td>
@@ -27,15 +30,10 @@ $results = $crud->getAttendees();
                 </td>
            </tr> 
         <?php }?>
+        </tbody> 
     </table>
+    <script src="js/dataTable.js"></script>
 
 
-
-
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
 
 <?php require_once"includes/footer.php"; ?>

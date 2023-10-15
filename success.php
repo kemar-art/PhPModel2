@@ -2,6 +2,7 @@
     $title= "success";
     require_once "includes/header.php"; 
     require_once "db/conn.php";
+    require_once 'sendemail.php';
 
     if (isset($_POST["submit"])) {
         $fname = $_POST['firstname'];
@@ -12,11 +13,7 @@
         $specialty = $_POST['specialty'];
 
 
-        /*$orig_file = $_FILES["avatar"]["tmp_name"];
-        $ext = pathinfo($_FILES["avatar"]["name"], PATHINFO_EXTENSION);
-        $target_dir = 'uploads/';
-        $destination = "$target_dir$contact.$ext";
-        move_uploaded_file($orig_file,$destination);*/
+        
 
 
         $orig_file = $_FILES["avatar"]["tmp_name"];
@@ -25,11 +22,11 @@
         $destination = "$target_dir$contact.$ext";
         move_uploaded_file($orig_file,$destination);
 
-         exit();
 
-        $isSuccess = $crud->insertAttendees($fname, $lname, $dob, $email, $contact, $specialty);
+        $isSuccess = $crud->insertAttendees($fname, $lname, $dob, $email, $contact, $specialty, $destination);
         $specialtyName = $crud->getSpecialtyById($specialty);
         if ($isSuccess) {
+            SendEmail::SendMail($email, 'Welcome to IT Conference 2023', 'You have successfully registerted for this year\'s IT Conference');
             include 'includes/successmessage.php';
         }
         else{
@@ -38,7 +35,7 @@
     }
 ?>
 
-
+<img src="<?php echo $destination; ?>" class="rounded-circle" style="width: 20%; height: 20%" />
     <div class="card" style="width: 18rem;">
         <div class="card-body">
             <h5 class="card-title">

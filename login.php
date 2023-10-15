@@ -25,21 +25,19 @@
 <h1 class="text-center"><?php echo $title ?> </h1>
    
     <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
-        <table class="table table-sm">
-            <tr>
-                <td><label for="username">Username: * </label></td>
-                <td><input type="text" name="username" class="form-control" id="username" value="<?php if($_SERVER['REQUEST_METHOD'] == 'POST') echo $_POST['username']; ?>">
-                </td>
-            </tr>
-            <tr>
-                <td><label for="password">Password: * </label></td>
-                <td><input type="password" name="password" class="form-control" id="password">
-                </td>
-            </tr>
-        </table><br/><br/>
-        <input type="submit" value="Login" class="btn btn-primary btn-block"><br/>
-        <a href="#"> Forgot Password </a>
-            
-    </form><br/><br/><br/><br/>
+        <div class="align-items-center justify-content-center w-50 mx-auto">
+            <div class="mb-3 align-items-center">
+                <llabel for="username">Username: * </label>
+                <input ttype="text" name="username" class="form-control" id="username" value="<?php if($_SERVER['REQUEST_METHOD'] == 'POST') echo $_POST['username']; ?>">
+                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+            <div class="mb-3 align-items-center">
+                <label for="password">Password: * </label>
+                <input type="password" name="password" class="form-control" id="password">
+            </div>
+            <input type="submit" value="Login" class="btn btn-primary btn-block"><br/>
+        </div>
+    </form>
+    
 
 <?php include_once 'includes/footer.php'?>
